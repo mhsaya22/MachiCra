@@ -3,5 +3,4 @@ version: '1.0-SNAPSHOT'
 main: plugin.machiCra.Main
 api-version: '1.21'
 commands:
-  machiCra:
-    newMachiCra:
+  machicra:
