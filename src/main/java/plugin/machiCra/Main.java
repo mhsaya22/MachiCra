@@ -12,9 +12,9 @@ public final class Main extends JavaPlugin implements Listener{
   @Override
   public void onEnable(){
     Bukkit.getPluginManager().registerEvents(this,this);
-    getCommand("machiCra").setExecutor(new MachiCraCommand());
+    getCommand("machiCra").setExecutor(new MachiCraCommand(this));
 
     Bukkit.getPluginManager().registerEvents(this,this);
-    getCommand("newMachiCra").setExecutor(new NewMachiCraCommand());
+    getCommand("newMachiCra").setExecutor(new NewMachiCraCommand(this));
   }
 }

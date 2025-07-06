@@ -4,4 +4,4 @@ main: plugin.machiCra.Main
 api-version: '1.21'
 commands:
   machiCra:
-    newMachiCra:
+  newMachiCra:
