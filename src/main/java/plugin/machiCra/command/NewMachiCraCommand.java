@@ -51,8 +51,6 @@ public class NewMachiCraCommand implements CommandExecutor {
         e.printStackTrace();
       }
 
-
-
     }
 
     return true;

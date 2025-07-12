@@ -1,12 +1,10 @@
 package plugin.machiCra.command;
 
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.List;
 import java.util.UUID;
-import javax.imageio.IIOException;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -35,19 +33,35 @@ public class MachiCraCommand implements CommandExecutor {
         return true;
       }
       try {
-        FileReader fr = new FileReader(playerFile);
-        BufferedReader br = new BufferedReader(fr);
-        String line;
-        while ((line = br.readLine()) != null) {
-          player.sendMessage(line);
+        List<String> lines = Files.readAllLines(playerFile.toPath());
+        String stage = "";
+        int level = 0;
+        int progress = 0;
+        for (String s : lines){
+          String[] parts = s.split(":");
+
+          //配列の要素が2個だったら
+          if (parts.length == 2) {
+            String key = parts[0];
+            String value = parts[1];
+
+            switch (key) {
+              case "ステージ" -> stage = value;
+              case "レベル" -> level = Integer.parseInt(value);
+              case "進捗" -> progress = Integer.parseInt(value);
+            }
+          }
         }
-        br.close();
+
+        player.sendMessage("おかえりなさい！続きから始めましょう！");
+        player.sendMessage("現在のステージ" + stage);
+        player.sendMessage("レベル" + level);
+        player.sendMessage("進捗" + progress);
+
       } catch (IOException e) {
         e.printStackTrace();
       }
-
-      player.sendMessage("おかえりなさい！続きから始めましょう！");
     }
-      return false;
+      return true;
     }
   }
